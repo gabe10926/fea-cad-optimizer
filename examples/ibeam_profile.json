@@ -1,0 +1,27 @@
+{
+  "material": {
+    "name": "Aluminum 6061-T6",
+    "youngs_modulus": 68900000000.0,
+    "poisson_ratio": 0.33,
+    "density": 2700.0,
+    "yield_strength": 276000000.0
+  },
+  "mesh": {"method": "gmsh", "element_order": 2, "size": 6.0, "minimum_size": 1.0, "maximum_size": 10.0},
+  "boundary_conditions": [
+    {"type": "fixed", "target": {"name": "Wall", "selector": "named", "value": "xmin"}}
+  ],
+  "loads": [
+    {"type": "force", "target": {"name": "Tip load", "selector": "named", "value": "xmax"},
+     "vector": [0.0, 0.0, -1.0], "magnitude": 3000.0}
+  ],
+  "analysis": {
+    "type": "static",
+    "solver": "calculix",
+    "stress_limit": 150000000.0,
+    "displacement_limit": 0.0015,
+    "mass_limit": null,
+    "penalty_weight": 1000.0,
+    "constraint_safety_factor": 1.05,
+    "stress_exclusion_radius": 8.0
+  }
+}
